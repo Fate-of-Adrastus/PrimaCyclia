@@ -1,14 +1,9 @@
-﻿using MonoMod.RuntimeDetour;
-using MonoMod.Utils;
+﻿using MonoMod.Utils;
 using Quintessential;
-//using Quintessential.Settings;
-//using SDL2;
 using System;
-using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 namespace PrimaCyclia;
 
 using AtomTypes = class_175;
@@ -49,37 +44,37 @@ public static class Parts
 
     // custom glyph textures
 
-    public static Texture prime_symbols = class_235.method_615("textures/PrimaCyclia/parts/prime_symbols");
+    public static Texture prime_symbols = class_235.method_615("textures/prima_cyclia/parts/prime_symbols");
 
-    public static Texture oxygen_input = class_235.method_615("textures/PrimaCyclia/parts/oxygen_input");
-    public static Texture phlog_input = class_235.method_615("textures/PrimaCyclia/parts/phlogiston_input");
-    public static Texture sulfur_input = class_235.method_615("textures/PrimaCyclia/parts/sulfur_input");
-    public static Texture primes_input = class_235.method_615("textures/PrimaCyclia/parts/primes_input");
-    public static Texture neutrality_input = class_235.method_615("textures/PrimaCyclia/parts/qs_sulfur_input");
-    public static Texture volatiles_input = class_235.method_615("textures/PrimaCyclia/parts/volatiles_input");
+    public static Texture oxygen_input = class_235.method_615("textures/prima_cyclia/parts/oxygen_input");
+    public static Texture phlog_input = class_235.method_615("textures/prima_cyclia/parts/phlogiston_input");
+    public static Texture sulfur_input = class_235.method_615("textures/prima_cyclia/parts/sulfur_input");
+    public static Texture primes_input = class_235.method_615("textures/prima_cyclia/parts/primes_input");
+    public static Texture neutrality_input = class_235.method_615("textures/prima_cyclia/parts/qs_sulfur_input");
+    public static Texture volatiles_input = class_235.method_615("textures/prima_cyclia/parts/volatiles_input");
 
-    public static Texture neutrality_base = class_235.method_615("textures/PrimaCyclia/parts/neutrality/base");
-    public static Texture cyclicity_base = class_235.method_615("textures/PrimaCyclia/parts/cyclicity/base");
-    public static Texture sublimation_base = class_235.method_615("textures/PrimaCyclia/parts/sublimation/base");
-    public static Texture empowerment_base = class_235.method_615("textures/PrimaCyclia/parts/empowerment/base");
-    public static Texture empowerment_mesh = class_235.method_615("textures/PrimaCyclia/parts/empowerment/mesh");
+    public static Texture neutrality_base = class_235.method_615("textures/prima_cyclia/parts/neutrality/base");
+    public static Texture cyclicity_base = class_235.method_615("textures/prima_cyclia/parts/cyclicity/base");
+    public static Texture sublimation_base = class_235.method_615("textures/prima_cyclia/parts/sublimation/base");
+    public static Texture empowerment_base = class_235.method_615("textures/prima_cyclia/parts/empowerment/base");
+    public static Texture empowerment_mesh = class_235.method_615("textures/prima_cyclia/parts/empowerment/mesh");
 
     public static Texture[][] sublimation_iris_anim = {
-        Brimstone.API.GetAnimation("textures/PrimaCyclia/parts/sublimation/iris_1_full.array","iris",16),
-        Brimstone.API.GetAnimation("textures/PrimaCyclia/parts/sublimation/iris_2_full.array","iris",16),
-        Brimstone.API.GetAnimation("textures/PrimaCyclia/parts/sublimation/iris_3_full.array","iris",16),
-        Brimstone.API.GetAnimation("textures/PrimaCyclia/parts/sublimation/iris_4_full.array","iris",16),
-        Brimstone.API.GetAnimation("textures/PrimaCyclia/parts/sublimation/iris_5_full.array","iris",16),
-        Brimstone.API.GetAnimation("textures/PrimaCyclia/parts/sublimation/iris_6_full.array","iris",16),
+        Brimstone.API.GetAnimation("textures/prima_cyclia/parts/sublimation/iris_1_full.array","iris",16),
+        Brimstone.API.GetAnimation("textures/prima_cyclia/parts/sublimation/iris_2_full.array","iris",16),
+        Brimstone.API.GetAnimation("textures/prima_cyclia/parts/sublimation/iris_3_full.array","iris",16),
+        Brimstone.API.GetAnimation("textures/prima_cyclia/parts/sublimation/iris_4_full.array","iris",16),
+        Brimstone.API.GetAnimation("textures/prima_cyclia/parts/sublimation/iris_5_full.array","iris",16),
+        Brimstone.API.GetAnimation("textures/prima_cyclia/parts/sublimation/iris_6_full.array","iris",16),
         };
 
-    public static Texture[] oxygen_iris = Brimstone.API.GetAnimation("textures/PrimaCyclia/parts/iris_oxygen_full.array","iris",16);
-    public static Texture[] phlog_iris = Brimstone.API.GetAnimation("textures/PrimaCyclia/parts/iris_phlogiston_full.array","iris",16);
+    public static Texture[] oxygen_iris = Brimstone.API.GetAnimation("textures/prima_cyclia/parts/iris_oxygen_full.array", "iris",16);
+    public static Texture[] phlog_iris = Brimstone.API.GetAnimation("textures/prima_cyclia/parts/iris_phlogiston_full.array", "iris",16);
 
-    public static Texture empowerment_overlay = class_235.method_615("textures/PrimaCyclia/parts/empowerment/overlay");
-    public static Texture[] empowerment_lights = {class_235.method_615("textures/PrimaCyclia/parts/empowerment/b2_light"),
-                                                  class_235.method_615("textures/PrimaCyclia/parts/empowerment/b3_light"),
-                                                  class_235.method_615("textures/PrimaCyclia/parts/empowerment/b1_light")};
+    public static Texture empowerment_overlay = class_235.method_615("textures/prima_cyclia/parts/empowerment/overlay");
+    public static Texture[] empowerment_lights = {class_235.method_615("textures/prima_cyclia/parts/empowerment/b2_light"),
+                                                  class_235.method_615("textures/prima_cyclia/parts/empowerment/b3_light"),
+                                                  class_235.method_615("textures/prima_cyclia/parts/empowerment/b1_light")};
     //
 
     public static List<AtomType> primeAtoms = new List<AtomType>{Brimstone.API.VanillaAtoms.quicksilver, Brimstone.API.VanillaAtoms.mors, Atoms.Sulfur, Brimstone.API.VanillaAtoms.vitae};
@@ -124,28 +119,28 @@ public static class Parts
     public static void LoadSounds()
     {
         string mainDir = Brimstone.API.GetContentPath("PrimaCyclia").method_1087();
-        CombustionOxygenRelease = Brimstone.API.GetSound(mainDir, "sounds/combustion_oxyg").method_1087();
-        CombustionPhlogRelease = Brimstone.API.GetSound(mainDir, "sounds/combustion_phlog").method_1087();
-        CombustionBothRelease = Brimstone.API.GetSound(mainDir, "sounds/combustion_both").method_1087();
-        CyclicitySound = Brimstone.API.GetSound(mainDir, "sounds/cyclicity_sound").method_1087();
-        EmpowermentConsume = Brimstone.API.GetSound(mainDir, "sounds/empowerment_oxyg_in").method_1087();
-        EmpowermentProduce = Brimstone.API.GetSound(mainDir, "sounds/empowerment_phlog_out").method_1087();
-        NeutralitySound = Brimstone.API.GetSound(mainDir, "sounds/neutrality_sound").method_1087();
-        PolaritySound = Brimstone.API.GetSound(mainDir, "sounds/polarity_sound").method_1087();
-        PrimalitySound = Brimstone.API.GetSound(mainDir, "sounds/primality_sound").method_1087();
-        SublimationSound = Brimstone.API.GetSound(mainDir, "sounds/sublimation_sound").method_1087();
+        CombustionOxygenRelease = Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/combustion_oxyg").method_1087();
+        CombustionPhlogRelease = Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/combustion_phlog").method_1087();
+        CombustionBothRelease = Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/combustion_both").method_1087();
+        CyclicitySound = Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/cyclicity_sound").method_1087();
+        EmpowermentConsume = Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/empowerment_oxyg_in").method_1087();
+        EmpowermentProduce = Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/empowerment_phlog_out").method_1087();
+        NeutralitySound = Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/neutrality_sound").method_1087();
+        PolaritySound = Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/polarity_sound").method_1087();
+        PrimalitySound = Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/primality_sound").method_1087();
+        SublimationSound = Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/sublimation_sound").method_1087();
 
         EmpowermentBonds = new Sound[] {
-            Brimstone.API.GetSound(mainDir, "sounds/empowerment_supertriplex_a").method_1087(),
-            Brimstone.API.GetSound(mainDir, "sounds/empowerment_supertriplex_b").method_1087(),
-            Brimstone.API.GetSound(mainDir, "sounds/empowerment_supertriplex_c").method_1087()
+            Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/empowerment_supertriplex_a").method_1087(),
+            Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/empowerment_supertriplex_b").method_1087(),
+            Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/empowerment_supertriplex_c").method_1087()
         };
 
         SublimationProduction = new Sound[]
         {
-            Brimstone.API.GetSound(mainDir, "sounds/sublimation_out_1_or_2").method_1087(),
-            Brimstone.API.GetSound(mainDir, "sounds/sublimation_out_3_or_4").method_1087(),
-            Brimstone.API.GetSound(mainDir, "sounds/sublimation_out_5_or_6").method_1087()
+            Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/sublimation_out_1_or_2").method_1087(),
+            Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/sublimation_out_3_or_4").method_1087(),
+            Brimstone.API.GetSound(mainDir, "sounds/prima_cyclia/sublimation_out_5_or_6").method_1087()
         };
 
         FieldInfo field = typeof(class_11).GetField("field_52", BindingFlags.Static | BindingFlags.NonPublic);
@@ -315,7 +310,7 @@ public static class Parts
         if (ContentLoaded) return;
         ContentLoaded = true;
         //=========================//
-        string iconpath = "textures/PrimaCyclia/parts/icons/tolomeo";
+        string iconpath = "textures/prima_cyclia/parts/icons/tolomeo";
         Tolomeo = new PartType()
         {
             field_1528 = "PrimaCyclia-tolomeo",
@@ -351,8 +346,8 @@ public static class Parts
             field_1539 = true, // Is a glyph
             field_1549 = class_238.field_1989.field_97.field_374, // Shadow/glow
             field_1550 = class_238.field_1989.field_97.field_375, // Stroke/outline
-            field_1547 = class_235.method_615("textures/PrimaCyclia/parts/icons/primality"), // Panel icon
-            field_1548 = class_235.method_615("textures/PrimaCyclia/parts/icons/primality_hover"), // Hovered panel icon
+            field_1547 = class_235.method_615("textures/prima_cyclia/parts/icons/primality"), // Panel icon
+            field_1548 = class_235.method_615("textures/prima_cyclia/parts/icons/primality_hover"), // Hovered panel icon
             field_1540 = new HexIndex[] { center, hex_right },
             field_1551 = Permissions.None,
             CustomPermissionCheck = perms => perms.Contains("PrimaCyclia:Primality")
@@ -381,10 +376,10 @@ public static class Parts
             field_1530 = class_134.method_253("The glyph of neutrality converts one atom of sulfur and one atom of quicksilver into a single neutral salt.", string.Empty), // Description
             field_1531 = 15, // Cost
             field_1539 = true, // Is a glyph
-            field_1549 = class_235.method_615("textures/PrimaCyclia/parts/neutrality/glow"), // Shadow/glow
-            field_1550 = class_235.method_615("textures/PrimaCyclia/parts/neutrality/stroke"), // Stroke/outline
-            field_1547 = class_235.method_615("textures/PrimaCyclia/parts/icons/neutrality"), // Panel icon
-            field_1548 = class_235.method_615("textures/PrimaCyclia/parts/icons/neutrality_hover"), // Hovered panel icon
+            field_1549 = class_235.method_615("textures/prima_cyclia/parts/neutrality/glow"), // Shadow/glow
+            field_1550 = class_235.method_615("textures/prima_cyclia/parts/neutrality/stroke"), // Stroke/outline
+            field_1547 = class_235.method_615("textures/prima_cyclia/parts/icons/neutrality"), // Panel icon
+            field_1548 = class_235.method_615("textures/prima_cyclia/parts/icons/neutrality_hover"), // Hovered panel icon
             field_1540 = new HexIndex[] { center, hex_right, hex_left },
             field_1551 = Permissions.None,
             CustomPermissionCheck = perms => perms.Contains("PrimaCyclia:Neutrality")
@@ -443,10 +438,10 @@ public static class Parts
             field_1530 = class_134.method_253("The glyph of cyclicity takes atoms of non-neutral primes and progresses them to their next step in the cycle of primes.", string.Empty), // Description
             field_1531 = 20, // Cost
             field_1539 = true, // Is a glyph
-            field_1549 = class_235.method_615("textures/PrimaCyclia/parts/cyclicity/glow"), // Shadow/glow
-            field_1550 = class_235.method_615("textures/PrimaCyclia/parts/cyclicity/stroke"), // Stroke/outline
-            field_1547 = class_235.method_615("textures/PrimaCyclia/parts/icons/cyclicity"), // Panel icon
-            field_1548 = class_235.method_615("textures/PrimaCyclia/parts/icons/cyclicity_hover"), // Hovered panel icon
+            field_1549 = class_235.method_615("textures/prima_cyclia/parts/cyclicity/glow"), // Shadow/glow
+            field_1550 = class_235.method_615("textures/prima_cyclia/parts/cyclicity/stroke"), // Stroke/outline
+            field_1547 = class_235.method_615("textures/prima_cyclia/parts/icons/cyclicity"), // Panel icon
+            field_1548 = class_235.method_615("textures/prima_cyclia/parts/icons/cyclicity_hover"), // Hovered panel icon
             field_1540 = new HexIndex[] { center, hex_up_right, hex_down_right },
             field_1551 = Permissions.None,
             CustomPermissionCheck = perms => perms.Contains("PrimaCyclia:Cyclicity")
@@ -503,10 +498,10 @@ public static class Parts
             field_1530 = class_134.method_253("The glyph of polarity consumes salt, and in turn inverts atoms of non-neutral primes to their opposite in the cycle of primes.", string.Empty), // Description
             field_1531 = 15, // Cost
             field_1539 = true, // Is a glyph
-            field_1549 = class_235.method_615("textures/PrimaCyclia/parts/neutrality/glow"), // Shadow/glow
-            field_1550 = class_235.method_615("textures/PrimaCyclia/parts/neutrality/stroke"), // Stroke/outline
-            field_1547 = class_235.method_615("textures/PrimaCyclia/parts/icons/polarity"), // Panel icon
-            field_1548 = class_235.method_615("textures/PrimaCyclia/parts/icons/polarity_hover"), // Hovered panel icon
+            field_1549 = class_235.method_615("textures/prima_cyclia/parts/neutrality/glow"), // Shadow/glow
+            field_1550 = class_235.method_615("textures/prima_cyclia/parts/neutrality/stroke"), // Stroke/outline
+            field_1547 = class_235.method_615("textures/prima_cyclia/parts/icons/polarity"), // Panel icon
+            field_1548 = class_235.method_615("textures/prima_cyclia/parts/icons/polarity_hover"), // Hovered panel icon
             field_1540 = new HexIndex[] { center, hex_left, hex_right },
             field_1551 = Permissions.None,
             CustomPermissionCheck = perms => perms.Contains("PrimaCyclia:Polarity")
@@ -538,8 +533,8 @@ public static class Parts
             field_1539 = true, // Is a glyph
             field_1549 = class_235.method_615("textures/select/diamond_glow"), // Shadow/glow
             field_1550 = class_235.method_615("textures/select/diamond_stroke"), // Stroke/outline
-            field_1547 = class_235.method_615("textures/PrimaCyclia/parts/icons/combustion"), // Panel icon
-            field_1548 = class_235.method_615("textures/PrimaCyclia/parts/icons/combustion_hover"), // Hovered panel icon
+            field_1547 = class_235.method_615("textures/prima_cyclia/parts/icons/combustion"), // Panel icon
+            field_1548 = class_235.method_615("textures/prima_cyclia/parts/icons/combustion_hover"), // Hovered panel icon
             field_1540 = new HexIndex[] { center, hex_up_right, hex_down_right, hex_right },
             field_1551 = Permissions.None,
             CustomPermissionCheck = perms => perms.Contains("PrimaCyclia:Combustion")
@@ -627,10 +622,10 @@ public static class Parts
             field_1530 = class_134.method_253("The glyph of sublimation violently consumes any atom it receives, producing sulfur in return. The amount of sulfur produced is equal to the \"weight\" of the atom.\n\nMost atoms have a weight of 1, quintessence has a weight of 4, and all metals have a weight equal to their metallicity. All volatile atoms, however, do not produce any sulfur when consumed by this glyph.", string.Empty), // Description
             field_1531 = 20, // Cost
             field_1539 = true, // Is a glyph
-            field_1549 = class_235.method_615("textures/PrimaCyclia/parts/sublimation/glow"), // Shadow/glow
-            field_1550 = class_235.method_615("textures/PrimaCyclia/parts/sublimation/stroke"), // Stroke/outline
-            field_1547 = class_235.method_615("textures/PrimaCyclia/parts/icons/sublimation"), // Panel icon
-            field_1548 = class_235.method_615("textures/PrimaCyclia/parts/icons/sublimation_hover"), // Hovered panel icon
+            field_1549 = class_235.method_615("textures/prima_cyclia/parts/sublimation/glow"), // Shadow/glow
+            field_1550 = class_235.method_615("textures/prima_cyclia/parts/sublimation/stroke"), // Stroke/outline
+            field_1547 = class_235.method_615("textures/prima_cyclia/parts/icons/sublimation"), // Panel icon
+            field_1548 = class_235.method_615("textures/prima_cyclia/parts/icons/sublimation_hover"), // Hovered panel icon
             field_1540 = new HexIndex[] { center, hex_left, hex_right, hex_down_left, hex_down_right, hex_up_left, hex_up_right,
                                           sublimationIrises[0], sublimationIrises[1], sublimationIrises[2], sublimationIrises[3], sublimationIrises[4], sublimationIrises[5] },
             field_1551 = Permissions.None,
@@ -735,8 +730,8 @@ public static class Parts
             field_1539 = true, // Is a glyph
             field_1549 = class_238.field_1989.field_97.field_372, // Shadow/glow
             field_1550 = class_238.field_1989.field_97.field_373, // Stroke/outline
-            field_1547 = class_235.method_615("textures/PrimaCyclia/parts/icons/empowerment"), // Panel icon
-            field_1548 = class_235.method_615("textures/PrimaCyclia/parts/icons/empowerment_hover"), // Hovered panel icon
+            field_1547 = class_235.method_615("textures/prima_cyclia/parts/icons/empowerment"), // Panel icon
+            field_1548 = class_235.method_615("textures/prima_cyclia/parts/icons/empowerment_hover"), // Hovered panel icon
             field_1540 = new HexIndex[] { hex_left, hex_right, hex_up_left, hex_up_right },
             field_1551 = Permissions.None,
             CustomPermissionCheck = perms => perms.Contains("PrimaCyclia:Empowerment")
