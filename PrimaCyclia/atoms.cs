@@ -11,7 +11,7 @@ namespace PrimaCyclia;
 
 using QuintessenceAtomColours = class_229;
 
-using Texture = class_256;
+using Texture = Texture;
 
 internal static class Atoms{
 	

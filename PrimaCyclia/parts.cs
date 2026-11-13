@@ -15,7 +15,7 @@ using AtomTypes = class_175;
 using Permissions = enum_149;
 using PartType = class_139;
 using PartTypes = class_191;
-using Texture = class_256;
+using Texture = Texture;
 
 public static class Parts
 {
@@ -653,7 +653,7 @@ public static class Parts
 			renderer.method_529(class_238.field_1989.field_90.field_239.field_284, new HexIndex(0, 0), new Vector2(1f, 1f));
 			renderer.method_529(class_238.field_1989.field_90.field_239.field_286, new HexIndex(0, 0), new Vector2(1f, 1f));
 			renderer.method_529(class_238.field_1989.field_90.field_239.field_287, new HexIndex(0, 0), new Vector2(1f, 1f));
-			class_256[] field_17 = class_238.field_1989.field_90.field_241;
+			Texture[] field_17 = class_238.field_1989.field_90.field_241;
 			int num13 = 0;
 			if (editor.method_503() != enum_128.Stopped)
 			{
