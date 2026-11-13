@@ -1,9 +1,10 @@
-﻿using Quintessential;
-using System;
-using System.Reflection;
-﻿using Mono.Cecil.Cil;
+﻿﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using Quintessential;
+using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace PrimaCyclia;
 
@@ -58,4 +59,11 @@ public class PrimaCyclia : QuintessentialMod {
         orig(seb_self, part, pos, alpha);
     }
 
+    public static Texture[] GetAnimation(string containingFolder, string frameBaseName, int frameCount, int padding = 4) {
+        Texture[] anim = new Texture[frameCount];
+        for (int i = 0; i < frameCount; i++) {
+            anim[i] = AssetLoaderHelper.LoadTexture(Path.Combine(containingFolder, frameBaseName) + "_" + (i + 1).ToString().PadLeft(padding, '0'));
+        }
+        return anim;
+    }
 }

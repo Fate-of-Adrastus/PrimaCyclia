@@ -2,65 +2,52 @@
 
 namespace PrimaCyclia;
 
-internal static class Atoms{
+internal static class Atoms {
 	
 	public static AtomType Sulfur, Oxygen, Phlogiston;
-	public static readonly AtomType salt = class_175.field_1675;
 
-	public static void AddAtomTypes(){
-		// Sulfur atom type
-		Sulfur = new(){
-			field_2283 = 111, /*ID*/
-			field_2284 = class_134.method_254("Sulfur"), /*Non-local Name*/
-			field_2285 = class_134.method_253("Elemental Sulfur", string.Empty), /*Atomic Name*/
-			field_2286 = class_134.method_253("Sulfur", string.Empty), /*Local name*/
-			field_2287 = class_235.method_615("textures/prima_cyclia/atoms/sulfur_symbol"), /*Symbol*/
-			field_2288 = class_238.field_1989.field_81.field_599, /*Shadow*/
-			field_2290 = new class_106
-			{
-				field_994 = class_238.field_1989.field_81.field_596,
-				field_995 = class_238.field_1989.field_81.field_597
-			}
-		};
-		Sulfur.QuintAtomType = "PrimaCyclia:sulfur";
+	public static void AddAtomTypes() {
+        // Sulfur atom type
+        Sulfur = new() {
+            defaultName = Translations.WithAllLanguages("Sulfur"), /*Non-local Name*/
+            elementalName = Translations.Translate("Elemental Sulfur"), /*Atomic Name*/
+            name = Translations.Translate("Sulfur"), /*Local name*/
+            symbol = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/atoms/sulfur_symbol"), /*Symbol*/
+            shadow = Assets.textures.atoms.shadow, /*Shadow*/
+            matteTextures = new MatteAtomTextures {
+                diffuse = Assets.textures.atoms.salt_diffuse,
+                shade = Assets.textures.atoms.salt_shade
+            },
+        };
+        PrimaCyclia.Instance.AddAtomType(Sulfur, "sulfur");
 
-		QApi.AddAtomType(Sulfur);
+        // Oxygen atom type
+        Oxygen = new() {
+            defaultName = Translations.WithAllLanguages("Oxygen"), /*Non-local Name*/
+            elementalName = Translations.Translate("Elemental Oxygen"), /*Atomic Name*/
+            name = Translations.Translate("Oxygen"), /*Local name*/
+            symbol = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/atoms/oxygen_symbol"), /*Symbol*/
+            shadow = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/atoms/oxygen_shadow"), /*Shadow*/
+            matteTextures = new MatteAtomTextures {
+                diffuse = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/atoms/oxygen_diffuse"),
+                shade = Assets.textures.atoms.elements.specular_highlight
+            },
+        };
+        PrimaCyclia.Instance.AddAtomType(Oxygen, "oxygen");
 
-		// Oxygen atom type
-		Oxygen = new(){
-			field_2283 = 112, /*ID*/
-			field_2284 = class_134.method_254("Oxygen"), /*Non-local Name*/
-			field_2285 = class_134.method_253("Elemental Oxygen", string.Empty), /*Atomic Name*/
-			field_2286 = class_134.method_253("Oxygen", string.Empty), /*Local name*/
-			field_2287 = class_235.method_615("textures/prima_cyclia/atoms/oxygen_symbol"), /*Symbol*/
-			field_2288 = class_235.method_615("textures/prima_cyclia/atoms/oxygen_shadow"), /*Shadow*/
-			field_2290 = new class_106
-			{
-				field_994 = class_235.method_615("textures/prima_cyclia/atoms/oxygen_diffuse"),
-				field_995 = class_238.field_1989.field_81.field_613.field_633
-			}
-		};
-		Oxygen.QuintAtomType = "PrimaCyclia:oxygen";
-
-		QApi.AddAtomType(Oxygen);
-
-		// Phlogiston atom type
-		Phlogiston = new(){
-			field_2283 = 113, /*ID*/
-			field_2284 = class_134.method_254("Phlogiston"), /*Non-local Name*/
-			field_2285 = class_134.method_253("Elemental Phlogiston", string.Empty), /*Atomic Name*/
-			field_2286 = class_134.method_253("Phlogiston", string.Empty), /*Local name*/
-			field_2287 = class_235.method_615("textures/prima_cyclia/atoms/phlogiston_symbol"), /*Symbol*/
-			field_2288 = class_235.method_615("textures/prima_cyclia/atoms/phlogiston_shadow"), /*Shadow*/
-			field_2290 = new class_106
-			{
-				field_994 = class_235.method_615("textures/prima_cyclia/atoms/phlogiston_diffuse"),
-				field_995 = class_238.field_1989.field_81.field_613.field_633
-			}
-		};
-		Phlogiston.QuintAtomType = "PrimaCyclia:phlogiston";
-
-		QApi.AddAtomType(Phlogiston);
+        // Phlogiston atom type
+        Phlogiston = new() {
+            defaultName = Translations.WithAllLanguages("Phlogiston"), /*Non-local Name*/
+            elementalName = Translations.Translate("Elemental Phlogiston"), /*Atomic Name*/
+            name = Translations.Translate("Phlogiston"), /*Local name*/
+            symbol = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/atoms/phlogiston_symbol"), /*Symbol*/
+            shadow = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/atoms/phlogiston_shadow"), /*Shadow*/
+            matteTextures = new MatteAtomTextures {
+                diffuse = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/atoms/phlogiston_diffuse"),
+                shade = Assets.textures.atoms.elements.specular_highlight
+            },
+        };
+        PrimaCyclia.Instance.AddAtomType(Phlogiston, "phlogiston");
 
 	}
 
