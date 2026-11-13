@@ -50,6 +50,4 @@ internal static class Atoms {
         PrimaCyclia.Instance.AddAtomType(Phlogiston, "phlogiston");
 
 	}
-
-	public static void Unload(){}
 }

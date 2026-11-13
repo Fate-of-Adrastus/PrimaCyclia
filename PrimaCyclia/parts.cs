@@ -1,4 +1,5 @@
 ﻿using MonoMod.Utils;
+using Patches;
 using Quintessential;
 using System;
 using System.Collections.Generic;
@@ -156,11 +157,11 @@ public static class Parts {
         IntermediatePartState class236 = seb_self.GetIntermState(part, pos);
         Color color = Color.White.WithAlpha(alpha);
 
-        PrimaCyclia.PrivateMethod<SolutionEditorBase>("RenderArmSelection").Invoke(seb_self, [armLength, HexArmRotations, class236, color]);
+        patch_SolutionEditorBase.RenderArmSelection(armLength, HexArmRotations, class236, color);
         for (int index = 0; index < 6; ++index)
         {
             float num = index * sixtyDegrees;
-            PrimaCyclia.PrivateMethod<SolutionEditorBase>("RenderRotated").Invoke(seb_self, [cageSelectGlowTexture, color, class236.pos, class236.rotation + num]);
+            patch_SolutionEditorBase.RenderRotated(cageSelectGlowTexture, color, class236.pos, class236.rotation + num);
         }
     }
 
@@ -221,7 +222,7 @@ public static class Parts {
 
         // draw arm stubs
         IntermediatePartState class236 = editor.GetIntermState(part, pos);
-        PrimaCyclia.PrivateMethod<SolutionEditorBase>("RenderArmLights").Invoke(editor, [part.GetArmLength(), HexArmRotations, class236]);
+        patch_SolutionEditorBase.RenderArmLights(part.GetArmLength(), HexArmRotations, class236);
 
         // draw cages
         PartSimState partSimState = editor.GetSimulation().GetSimState(part);
@@ -229,7 +230,7 @@ public static class Parts {
         {
             float radians = renderer.partRotation + (i * sixtyDegrees);
             Vector2 vector2_9 = renderer.partPos + hexGraphicalOffset(new HexIndex(1, 0)).Rotated(radians);
-            PrimaCyclia.PrivateMethod<SolutionEditorBase>("RenderLights").Invoke(editor, [atomCageLighting, vector2_9, new Vector2(39f, 33f), radians]);
+            patch_SolutionEditorBase.RenderLights(atomCageLighting, vector2_9, new Vector2(39f, 33f), radians);
         }
     }
     public static void drawTolomeoAtoms(SolutionEditorBase seb_self, Part part, Vector2 pos)
