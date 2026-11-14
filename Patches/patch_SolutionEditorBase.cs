@@ -3,10 +3,7 @@ using Mono.Cecil.Cil;
 using MonoMod;
 using MonoMod.Cil;
 using PrimaCyclia;
-using System;
 using System.Linq;
-
-namespace Patches;
 
 internal abstract class patch_SolutionEditorBase : SolutionEditorBase {
     [MonoModIgnore]
@@ -32,21 +29,22 @@ internal abstract class patch_SolutionEditorBase : SolutionEditorBase {
 
     [MonoModILInject("RenderSolution")]
     static void PatchDrawWheelAtoms(MethodDefinition method, CustomAttribute attribute) {
-
         ILCursor cursor = new(new ILContext(method));
         MethodDefinition toCall = method.DeclaringType.Methods.First(m => m.Name.Equals("prima_cycliaRenderTolomeoWheel"));
 
-        // skip ahead to roughly where method_2015 is called
-        cursor.Goto(658);
-
-        // jump ahead to just after the method_2015 for-loop
-        if (!cursor.TryGotoNext(MoveType.After, instr => instr.OpCode == OpCodes.Ldarga_S)) return;
+        // skip ahead to roughly where 'RenderMoleculeWithHolder' is called
+        cursor.Goto(600);
+        // jump ahead to just after the 'RenderMoleculeWithHolder' for-loop
+        cursor.GotoNext(MoveType.Before, instr => instr.MatchCallvirt("SolutionEditorBase", "RenderMoleculeWithHolder"));
+        cursor.GotoPrev(MoveType.Before, instr => instr.MatchCallvirt("ISim", "GetMolecules"));
+        cursor.GotoPrev(MoveType.After, instr => instr.MatchLdarg0());
 
         // load the SolutionEditorBase self and the class423 local onto the stack so we can use it
-        cursor.Emit(OpCodes.Ldarg_0);
         cursor.Emit(OpCodes.Ldloc_0);
         // then run the new code
         cursor.EmitCall(toCall);
+        // Add back the Ldarg_0 borrowed from above
+        cursor.Emit(OpCodes.Ldarg_0);
     }
 
     private void prima_cycliaRenderTolomeoWheel(SolutionEditorBase.class_423 class423) {

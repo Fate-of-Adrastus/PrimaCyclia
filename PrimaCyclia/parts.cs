@@ -1,5 +1,4 @@
 ﻿using MonoMod.Utils;
-using Patches;
 using Quintessential;
 using System;
 using System.Collections.Generic;
@@ -18,7 +17,7 @@ public static class Parts {
     public static readonly HexIndex hex_up_left = new(-1,1);
     public static readonly HexIndex hex_down_left = new(0,-1);
     static HexRotation[] HexArmRotations => PartTypes.hexArm.armRotations;
-    const string TolomeoWheelAtomsField = "PrimaCyclia_TolomeoMolecule";
+    const string TolomeoWheelAtomsField = "prima_cyclia_TolomeoMolecule";
     public static Vector2 hexGraphicalOffset(HexIndex hex) => HexGrid.standardGrid.ToPixelCoords(hex);
     static LightDirTextures atomCageLighting => Assets.textures.parts.atom_cage_lighting;
 
@@ -191,8 +190,8 @@ public static class Parts {
             isFullHexCover = true,
             glowTexture = Assets.textures.select.double_glow,
             strokeTexture = Assets.textures.select.double_stroke,
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/primality"),
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/primality_hover"),
+            //iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/primality"),
+            //iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/primality_hover"),
             glyphHexes = [center, hex_right],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("primality"))
@@ -208,8 +207,8 @@ public static class Parts {
             isFullHexCover = true,
             glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/glow"),
             strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/stroke"),
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/neutrality"),
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/neutrality_hover"),
+            //iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/neutrality"),
+            //iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/neutrality_hover"),
             glyphHexes = [center, hex_right, hex_left],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("neutrality"))
@@ -225,8 +224,8 @@ public static class Parts {
             isFullHexCover = true,
             glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/cyclicity/glow"),
             strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/cyclicity/stroke"),
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/cyclicity"),
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/cyclicity_hover"),
+            //iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/cyclicity"),
+            //iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/cyclicity_hover"),
             glyphHexes = [center, hex_up_right, hex_down_right],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("cyclicity"))
@@ -242,8 +241,8 @@ public static class Parts {
             isFullHexCover = true,
             glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/glow"),
             strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/stroke"),
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/polarity"),
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/polarity_hover"),
+            //iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/polarity"),
+            //iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/polarity_hover"),
             glyphHexes = [center, hex_left, hex_right],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("polarity"))
@@ -259,8 +258,8 @@ public static class Parts {
             isFullHexCover = true,
             glowTexture = AssetLoaderHelper.LoadTexture("textures/select/diamond_glow"),
             strokeTexture = AssetLoaderHelper.LoadTexture("textures/select/diamond_stroke"),
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/combustion"),
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/combustion_hover"),
+            //iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/combustion"),
+            //iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/combustion_hover"),
             glyphHexes = [center, hex_up_right, hex_down_right, hex_right],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("combustion"))
@@ -276,8 +275,8 @@ public static class Parts {
             isFullHexCover = true,
             glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/sublimation/glow"),
             strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/sublimation/stroke"),
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/sublimation"),
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/sublimation_hover"),
+            //iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/sublimation"),
+            //iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/sublimation_hover"),
             glyphHexes = [ center, hex_left, hex_right, hex_down_left, hex_down_right, hex_up_left, hex_up_right,
                 SublimationGlyph.sublimationIrises[0], SublimationGlyph.sublimationIrises[1], SublimationGlyph.sublimationIrises[2],
                 SublimationGlyph.sublimationIrises[3], SublimationGlyph.sublimationIrises[4], SublimationGlyph.sublimationIrises[5]
@@ -318,8 +317,8 @@ public static class Parts {
             isFullHexCover = true,
             glowTexture = Assets.textures.select.disposal_glow,
             strokeTexture = Assets.textures.select.disposal_stroke,
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/empowerment"),
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/empowerment_hover"),
+            //iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/empowerment"),
+            //iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/empowerment_hover"),
             glyphHexes = [hex_left, hex_right, hex_up_left, hex_up_right],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("empowerment"))
