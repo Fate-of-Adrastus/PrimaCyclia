@@ -15,7 +15,6 @@ internal class SublimationGlyph {
         PrimaCyclia.GetAnimation("textures/prima_cyclia/parts/sublimation/iris_6_full.array","iris",16),
     ];
     public static readonly HexIndex[] sublimationIrises = [new(-1, 2), new(1, 1), new(2, -1), new(1, -2), new(-1, -1), new(-2, 1)];
-    public static Dictionary<AtomType, int> sublimationDict = [];
 
     enum IrisMode { open, closed, opening, closing }
     private class SublimeState {
@@ -103,6 +102,12 @@ internal class SublimationGlyph {
         }
     }
 
+    public static bool GetAtomWeight(AtomType atomType, out int weight) {
+        weight = 0;
+        return AtomTag.AtomTags["prima_cyclia:$sublimation_weight"].HasAtom(atomType, out var weightKey) &&
+            weightKey.Value.namespc == "" && int.TryParse(weightKey.Value.name.ToString(), out weight);
+    }
+
     public static bool OnCycle(Sim sim, Part part, PartSimState simState, GlyphRecipe recipe, bool isCycleStart) {
         DynamicData dyn_pss = new(simState);
         object stateOb = dyn_pss.Get("sublimation_state");
@@ -114,8 +119,8 @@ internal class SublimationGlyph {
 
         bool hexes_covered = false;
         foreach (HexIndex h in sublimationIrises)
-            if (sim.FindAtomRelative(part, h).GetOrDefault(out AtomReference a)) { hexes_covered = true; }
-        if (sim.FindAtomRelative(part, Parts.center).GetOrDefault(out AtomReference positioned) && !sublimationDict.ContainsKey(positioned.atomType)) { hexes_covered = true; }
+            if (sim.GetAtomReference(part, h, false, out AtomReference a)) { hexes_covered = true; }
+        if (sim.GetAtomReference(part, Parts.center, false, out AtomReference positioned) && !GetAtomWeight(positioned.atomType, out _)) { hexes_covered = true; }
 
         int current_cycle = sim.GetCycle();
         if (is_open.cycle_modified < current_cycle && isCycleStart) {
@@ -127,11 +132,11 @@ internal class SublimationGlyph {
 
         bool wasActivated = false;
         if (is_open.mode == IrisMode.open && isCycleStart && !simState.isProcessing) {
-            if (sim.FindAtomRelative(part, Parts.center).GetOrDefault(out AtomReference input) && !input.inMultiAtomMolecule && !input.isHeldByArm) {
+            if (sim.GetAtomReference(part, Parts.center, false, out AtomReference input) && !input.inMultiAtomMolecule && !input.isHeldByArm) {
                 input.molecule.RemoveAtom(input.pos);
                 sim.solutionEditor.consumptionEffects.Add(new ConsumptionEffect(sim.solutionEditor, input));
                 int weight = 1;
-                if (sublimationDict.TryGetValue(input.atomType, out int value)) { weight = value; }
+                if (GetAtomWeight(input.atomType, out int value)) { weight = value; }
                 Parts.SublimationSound.PlaySound(sim.solutionEditor.GetVolumeMultiplier());
 
                 if (weight > 0) {

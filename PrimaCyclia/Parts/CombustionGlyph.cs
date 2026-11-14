@@ -49,12 +49,12 @@ internal class CombustionGlyph {
 
     public static bool OnCycle(Sim sim, Part part, PartSimState simState, GlyphRecipe recipe, bool isCycleStart) {
         if (isCycleStart && !simState.isProcessing) {
-            if (sim.FindAtomRelative(part, Parts.center).GetOrDefault(out AtomReference atom_1) && !atom_1.inMultiAtomMolecule && !atom_1.isHeldByArm &&
-                sim.FindAtomRelative(part, Parts.hex_right).GetOrDefault(out AtomReference atom_2) && !atom_2.inMultiAtomMolecule && !atom_2.isHeldByArm && (
+            if (sim.GetAtomReference(part, Parts.center, false, out AtomReference atom_1) && !atom_1.inMultiAtomMolecule && !atom_1.isHeldByArm &&
+                sim.GetAtomReference(part, Parts.hex_right, false, out AtomReference atom_2) && !atom_2.inMultiAtomMolecule && !atom_2.isHeldByArm && (
                     (atom_1.atomType == Atoms.Sulfur && atom_2.atomType == Atoms.Sulfur) ||
                     (atom_1.atomType != atom_2.atomType && Parts.volatileAtoms.Contains(atom_1.atomType) && Parts.volatileAtoms.Contains(atom_2.atomType))
                 )) {
-                if (!sim.FindAtomRelative(part, Parts.hex_down_right).HasValue() && !sim.FindAtomRelative(part, Parts.hex_up_right).HasValue()) {
+                if (!sim.HasAtomAt(part, Parts.hex_down_right, true) && !sim.HasAtomAt(part, Parts.hex_up_right, true)) {
 
                     AtomType[] produced_atoms;
                     if (atom_1.atomType == atom_2.atomType) {

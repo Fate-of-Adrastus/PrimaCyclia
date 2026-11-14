@@ -152,9 +152,6 @@ public static class Parts {
         }
         return (T)data;
     }
-    public static void addSublimationAtom(AtomType atom, int weight) {
-        SublimationGlyph.sublimationDict[atom] = weight;
-    }
 
     static bool ContentLoaded = false;
     public static void AddPartTypes() {        
@@ -291,27 +288,6 @@ public static class Parts {
         QApi.BindGlyphCycle(Sublimation, new(PartCycleDelegate.PartCycleExecutionType.Normal, SublimationGlyph.OnCycle));
         PrimaCyclia.Instance.AddRecipe(new(), Sublimation.Id, Sublimation.Id);
 
-        addSublimationAtom(AtomTypes.quintessence, 4);
-        addSublimationAtom(AtomTypes.air, 1);
-        addSublimationAtom(AtomTypes.earth, 1);
-        addSublimationAtom(AtomTypes.fire, 1);
-        addSublimationAtom(AtomTypes.water, 1);
-
-        addSublimationAtom(AtomTypes.vitae, 1);
-        addSublimationAtom(AtomTypes.mors, 1);
-
-        addSublimationAtom(AtomTypes.gold, 6);
-        addSublimationAtom(AtomTypes.silver, 5);
-        addSublimationAtom(AtomTypes.copper, 4);
-        addSublimationAtom(AtomTypes.iron, 3);
-        addSublimationAtom(AtomTypes.tin, 2);
-        addSublimationAtom(AtomTypes.lead, 1);
-        addSublimationAtom(AtomTypes.quicksilver, 1);
-
-        addSublimationAtom(Atoms.Sulfur, 0);
-        addSublimationAtom(Atoms.Oxygen, 0);
-        addSublimationAtom(Atoms.Phlogiston, 0);
-
         Empowerment = new() {
             cost = 10,
             isFullHexCover = true,
@@ -350,7 +326,7 @@ public static class Parts {
                 ((atom_1.atomType == Atoms.Sulfur && atom_2.atomType == AtomTypes.quicksilver) ||
                  (atom_2.atomType == Atoms.Sulfur && atom_1.atomType == AtomTypes.quicksilver))
             ) {
-                if (sim.HasAtomAt(part, center, true)) {
+                if (!sim.HasAtomAt(part, center, true)) {
                     atom_1.molecule.RemoveAtom(atom_1.pos);
                     sim.solutionEditor.consumptionEffects.Add(new ConsumptionEffect(sim.solutionEditor, atom_1));
                     atom_2.molecule.RemoveAtom(atom_2.pos);
@@ -372,7 +348,7 @@ public static class Parts {
     static bool CyclicityOnCycle(Sim sim, Part part, PartSimState simState, GlyphRecipe recipe, bool isCycleStart) {
         if (isCycleStart && !simState.isProcessing) {
             if (sim.GetAtomReference(part, hex_up_right, false, out AtomReference atom_1) && !atom_1.inMultiAtomMolecule && !atom_1.isHeldByArm && primeAtoms.Contains(atom_1.atomType)) {
-                if (sim.HasAtomAt(part, hex_down_right, true)) {
+                if (!sim.HasAtomAt(part, hex_down_right, true)) {
                     atom_1.molecule.RemoveAtom(atom_1.pos);
                     sim.solutionEditor.consumptionEffects.Add(new ConsumptionEffect(sim.solutionEditor, atom_1));
                     simState.isProcessing = true;

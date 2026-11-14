@@ -95,7 +95,7 @@ internal class EmpowermentGlyph {
 
         if (isCycleStart && !simState.isProcessing && emp.IsEmpty()) {
             if (!emp.containsCharge) {
-                if (sim.FindAtomRelative(part, Parts.hex_up_left).GetOrDefault(out AtomReference atom_1) && !atom_1.inMultiAtomMolecule && !atom_1.isHeldByArm && atom_1.atomType == Atoms.Oxygen) {
+                if (sim.GetAtomReference(part, Parts.hex_up_left, false, out AtomReference atom_1) && !atom_1.inMultiAtomMolecule && !atom_1.isHeldByArm && atom_1.atomType == Atoms.Oxygen) {
                     emp.canBond = [true, true, true];
                     emp.containsCharge = true;
                     atom_1.molecule.RemoveAtom(atom_1.pos);
@@ -120,7 +120,7 @@ internal class EmpowermentGlyph {
                     BonderInfo[] bonder_set = PartTypes.triplexBonder.bonders;
                     for (int index = 0; index < bonder_set.Length; index++) {
                         BonderInfo bonder = bonder_set[index];
-                        if (!sim.FindAtomRelative(other, bonder.hexPos1).GetOrDefault(out AtomReference leftAtom) || !sim.FindAtomRelative(other, bonder.hexPos2).GetOrDefault(out AtomReference rightAtom)) {
+                        if (!sim.GetAtomReference(other, bonder.hexPos1, false, out AtomReference leftAtom) || !sim.GetAtomReference(other, bonder.hexPos2, false, out AtomReference rightAtom)) {
                             continue;
                         }
                         if (emp.canBond[index]) {
@@ -130,11 +130,13 @@ internal class EmpowermentGlyph {
                                 var joined = leftAtom.molecule.MergeWith(rightAtom.molecule);
                                 sim.molecules.Add(joined);
                             }
-                            HexIndex h1 = part.GlobalPosFromLocal(bonder.hexPos1);
-                            HexIndex h2 = part.GlobalPosFromLocal(bonder.hexPos2);
+                            HexIndex h1 = other.GlobalPosFromLocal(bonder.hexPos1);
+                            HexIndex h2 = other.GlobalPosFromLocal(bonder.hexPos2);
                             if (sim.FindAtom(h1).GetOrDefault(out AtomReference atom1) && sim.FindAtom(h2).GetOrDefault(out AtomReference atom2)) {
+                                PrimaCyclia.Logger.Critical("Found - 1");
                                 Molecule subject = atom1.molecule;
                                 if (subject == atom2.molecule) {
+                                    PrimaCyclia.Logger.Critical("Found - 2");
                                     bool wasAnyAdded = false;
                                     foreach (BondType bondType in bonder.bondTypes) {
                                         BondTexture bondTexture = bondType.bondTexture;
@@ -147,6 +149,7 @@ internal class EmpowermentGlyph {
                                         }
                                     }
                                     if (wasAnyAdded) {
+                                        PrimaCyclia.Logger.Critical("Found - 3");
                                         Parts.EmpowermentBonds[index].PlaySound(sim.solutionEditor.GetVolumeMultiplier());
                                         emp.canBond[index] = false;
                                     }
