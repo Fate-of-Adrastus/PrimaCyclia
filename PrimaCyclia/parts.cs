@@ -165,9 +165,6 @@ public static class Parts {
         //=========================//
 
         Tolomeo = new PartType() {
-            //Id = "PrimaCyclia-tolomeo",
-            name = Translations.Translate("Tolomeo's Wheel"),
-            description = Translations.Translate("By using Tolomeo's wheel with the glyph of primality, neutral salt can be turned into any prime within the cycle of primes."),
             cost = 30,
             layer = PartTypeLayer.Top,
             isProgrammable = true,
@@ -186,127 +183,101 @@ public static class Parts {
         Tolomeo.attachedAtoms.Add(new HexIndex(-1, 1), Atoms.Sulfur);
 
         QApi.AddPartTypeToPanel(Tolomeo, PartTypes.berlosWheel);
-        //QApi.AddPuzzlePermission("PrimaCyclia:TolomeoWheel", "Tolomeo's Wheel", "Prima Cyclia");
         PrimaCyclia.Instance.AddPuzzlePermission("tolomeos_wheel");
         PrimaCyclia.Instance.AddPartType(Tolomeo, "tolomeos_wheel", RenderTolomeoPart);
 
         Primality = new() {
-            //Id = "PrimaCyclia-primality", // ID
-            name = Translations.Translate("Glyph of Primality"), // Name
-            description = Translations.Translate("The glyph of primality transforms an atom of salt into any atom within the cycle of primes."), // Description
-            cost = 20, // Cost
-            isFullHexCover = true, // Is a glyph
-            glowTexture = Assets.textures.select.double_glow, // Shadow/glow
-            strokeTexture = Assets.textures.select.double_stroke, // Stroke/outline
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/primality"), // Panel icon
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/primality_hover"), // Hovered panel icon
+            cost = 20,
+            isFullHexCover = true,
+            glowTexture = Assets.textures.select.double_glow,
+            strokeTexture = Assets.textures.select.double_stroke,
+            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/primality"),
+            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/primality_hover"),
             glyphHexes = [center, hex_right],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("primality"))
         };
         QApi.AddPartTypeToPanel(Primality, false);
-        //QApi.AddPuzzlePermission("PrimaCyclia:Primality", "Glyph of Primality", "Prima Cyclia");
         PrimaCyclia.Instance.AddPuzzlePermission("primality");
         PrimaCyclia.Instance.AddPartType(Primality, "primality", RenderPrimality);
         QApi.BindGlyphCycle(Primality, new(PartCycleDelegate.PartCycleExecutionType.Normal, PrimalityOnCycle));
         PrimaCyclia.Instance.AddRecipe(new(), Primality.Id, Primality.Id);
 
-
         Neutrality = new() {
-            //Id = "PrimaCyclia-neutrality", // ID
-            name = Translations.Translate("Glyph of Neutrality"), // Name
-            description = Translations.Translate("The glyph of neutrality converts one atom of sulfur and one atom of quicksilver into a single neutral salt."), // Description
-            cost = 15, // Cost
-            isFullHexCover = true, // Is a glyph
-            glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/glow"), // Shadow/glow
-            strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/stroke"), // Stroke/outline
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/neutrality"), // Panel icon
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/neutrality_hover"), // Hovered panel icon
+            cost = 15,
+            isFullHexCover = true,
+            glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/glow"),
+            strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/stroke"),
+            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/neutrality"),
+            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/neutrality_hover"),
             glyphHexes = [center, hex_right, hex_left],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("neutrality"))
         };
         QApi.AddPartTypeToPanel(Neutrality, false);
-        //QApi.AddPuzzlePermission("PrimaCyclia:Neutrality", "Glyph of Neutrality", "Prima Cyclia");
         PrimaCyclia.Instance.AddPuzzlePermission("neutrality");
         PrimaCyclia.Instance.AddPartType(Neutrality, "neutrality", RenderNeutrality);
         QApi.BindGlyphCycle(Neutrality, new(PartCycleDelegate.PartCycleExecutionType.Normal, NeutralityOnCycle));
         PrimaCyclia.Instance.AddRecipe(new(), Neutrality.Id, Neutrality.Id);
 
         Cyclicity = new() {
-            //Id = "PrimaCyclia-cyclicity", // ID
-            name = Translations.Translate("Glyph of Cyclicity"), // Name
-            description = Translations.Translate("The glyph of cyclicity takes atoms of non-neutral primes and progresses them to their next step in the cycle of primes."), // Description
-            cost = 20, // Cost
-            isFullHexCover = true, // Is a glyph
-            glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/cyclicity/glow"), // Shadow/glow
-            strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/cyclicity/stroke"), // Stroke/outline
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/cyclicity"), // Panel icon
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/cyclicity_hover"), // Hovered panel icon
+            cost = 20,
+            isFullHexCover = true,
+            glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/cyclicity/glow"),
+            strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/cyclicity/stroke"),
+            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/cyclicity"),
+            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/cyclicity_hover"),
             glyphHexes = [center, hex_up_right, hex_down_right],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("cyclicity"))
         };
         QApi.AddPartTypeToPanel(Cyclicity, false);
-        //QApi.AddPuzzlePermission("PrimaCyclia:Cyclicity", "Glyph of Cyclicity", "Prima Cyclia");
         PrimaCyclia.Instance.AddPuzzlePermission("cyclicity");
         PrimaCyclia.Instance.AddPartType(Cyclicity, "cyclicity", RenderCyclicity);
         QApi.BindGlyphCycle(Cyclicity, new(PartCycleDelegate.PartCycleExecutionType.Normal, CyclicityOnCycle));
         PrimaCyclia.Instance.AddRecipe(new(), Cyclicity.Id, Cyclicity.Id);
 
-
         Polarity = new() {
-            //Id = "PrimaCyclia-polarity", // ID
-            name = Translations.Translate("Glyph of Polarity"), // Name
-            description = Translations.Translate("The glyph of polarity consumes salt, and in turn inverts atoms of non-neutral primes to their opposite in the cycle of primes."), // Description
-            cost = 15, // Cost
-            isFullHexCover = true, // Is a glyph
-            glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/glow"), // Shadow/glow
-            strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/stroke"), // Stroke/outline
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/polarity"), // Panel icon
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/polarity_hover"), // Hovered panel icon
+            cost = 15,
+            isFullHexCover = true,
+            glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/glow"),
+            strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/neutrality/stroke"),
+            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/polarity"),
+            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/polarity_hover"),
             glyphHexes = [center, hex_left, hex_right],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("polarity"))
         };
         QApi.AddPartTypeToPanel(Polarity, false);
-        //QApi.AddPuzzlePermission("PrimaCyclia:Polarity", "Glyph of Polarity", "Prima Cyclia");
         PrimaCyclia.Instance.AddPuzzlePermission("polarity");
         PrimaCyclia.Instance.AddPartType(Polarity, "polarity", RenderPolarity);
         QApi.BindGlyphCycle(Polarity, new(PartCycleDelegate.PartCycleExecutionType.Normal, PolarityOnCycle));
         PrimaCyclia.Instance.AddRecipe(new(), Polarity.Id, Polarity.Id);
 
         Combustion = new() {
-            //Id = "PrimaCyclia-combustion", // ID
-            name = Translations.Translate("Glyph of Combustion"), // Name
-            description = Translations.Translate("The glyph of combustion takes two different volatile atoms and turns them into two of the third volatile. It can also turn two sulfur into one each of the other volatiles."), // Description
-            cost = 20, // Cost
-            isFullHexCover = true, // Is a glyph
-            glowTexture = AssetLoaderHelper.LoadTexture("textures/select/diamond_glow"), // Shadow/glow
-            strokeTexture = AssetLoaderHelper.LoadTexture("textures/select/diamond_stroke"), // Stroke/outline
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/combustion"), // Panel icon
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/combustion_hover"), // Hovered panel icon
+            cost = 20,
+            isFullHexCover = true,
+            glowTexture = AssetLoaderHelper.LoadTexture("textures/select/diamond_glow"),
+            strokeTexture = AssetLoaderHelper.LoadTexture("textures/select/diamond_stroke"),
+            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/combustion"),
+            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/combustion_hover"),
             glyphHexes = [center, hex_up_right, hex_down_right, hex_right],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("combustion"))
         };
         QApi.AddPartTypeToPanel(Combustion, false);
-        //QApi.AddPuzzlePermission("PrimaCyclia:Combustion", "Glyph of Combustion", "Prima Cyclia");
         PrimaCyclia.Instance.AddPuzzlePermission("combustion");
         PrimaCyclia.Instance.AddPartType(Combustion, "combustion", CombustionGlyph.Render);
         QApi.BindGlyphCycle(Combustion, new(PartCycleDelegate.PartCycleExecutionType.Normal, CombustionGlyph.OnCycle));
         PrimaCyclia.Instance.AddRecipe(new(), Combustion.Id, Combustion.Id);
 
         Sublimation = new() {
-            //Id = "PrimaCyclia-sublimation", // ID
-            name = Translations.Translate("Glyph of Sublimation"), // Name
-            description = Translations.Translate("The glyph of sublimation violently consumes any atom it receives, producing sulfur in return. The amount of sulfur produced is equal to the \"weight\" of the atom.\n\nMost atoms have a weight of 1, quintessence has a weight of 4, and all metals have a weight equal to their metallicity. All volatile atoms, however, do not produce any sulfur when consumed by this glyph."), // Description
-            cost = 20, // Cost
-            isFullHexCover = true, // Is a glyph
-            glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/sublimation/glow"), // Shadow/glow
-            strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/sublimation/stroke"), // Stroke/outline
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/sublimation"), // Panel icon
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/sublimation_hover"), // Hovered panel icon
+            cost = 20,
+            isFullHexCover = true,
+            glowTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/sublimation/glow"),
+            strokeTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/sublimation/stroke"),
+            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/sublimation"),
+            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/sublimation_hover"),
             glyphHexes = [ center, hex_left, hex_right, hex_down_left, hex_down_right, hex_up_left, hex_up_right,
                 SublimationGlyph.sublimationIrises[0], SublimationGlyph.sublimationIrises[1], SublimationGlyph.sublimationIrises[2],
                 SublimationGlyph.sublimationIrises[3], SublimationGlyph.sublimationIrises[4], SublimationGlyph.sublimationIrises[5]
@@ -316,7 +287,6 @@ public static class Parts {
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("sublimation"))
         };
         QApi.AddPartTypeToPanel(Sublimation, false);
-        //QApi.AddPuzzlePermission("PrimaCyclia:Sublimation", "Glyph of Sublimation", "Prima Cyclia");
         PrimaCyclia.Instance.AddPuzzlePermission("sublimation");
         PrimaCyclia.Instance.AddPartType(Sublimation, "sublimation", SublimationGlyph.Render);
         QApi.BindGlyphCycle(Sublimation, new(PartCycleDelegate.PartCycleExecutionType.Normal, SublimationGlyph.OnCycle));
@@ -344,21 +314,17 @@ public static class Parts {
         addSublimationAtom(Atoms.Phlogiston, 0);
 
         Empowerment = new() {
-            //Id = "PrimaCyclia-empowerment", // ID
-            name = Translations.Translate("Glyph of Empowerment"), // Name
-            description = Translations.Translate("The glyph of empowerment consumes atoms of oxygen to unlock the full potential of a glyph of triplex-bonding, allowing any two atoms to be triplex bonded.\n\nIn turn, once all three parts of a triplex bond have been made, an atom of Phlogiston is produced, and the bonding glyph will once again be limited in its power."), // Description
-            cost = 10, // Cost
-            isFullHexCover = true, // Is a glyph
-            glowTexture = Assets.textures.select.disposal_glow, // Shadow/glow
-            strokeTexture = Assets.textures.select.disposal_stroke, // Stroke/outline
-            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/empowerment"), // Panel icon
-            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/empowerment_hover"), // Hovered panel icon
+            cost = 10,
+            isFullHexCover = true,
+            glowTexture = Assets.textures.select.disposal_glow,
+            strokeTexture = Assets.textures.select.disposal_stroke,
+            iconTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/empowerment"),
+            iconHoverTexture = AssetLoaderHelper.LoadTexture("textures/prima_cyclia/parts/icons/empowerment_hover"),
             glyphHexes = [hex_left, hex_right, hex_up_left, hex_up_right],
             permissionCategory = PuzzlePermissions.None,
             CustomPermissionCheck = perms => perms.Contains(PrimaCyclia.Instance.GetIdentifier("empowerment"))
         };
         QApi.AddPartTypeToPanel(Empowerment, false);
-        //QApi.AddPuzzlePermission("PrimaCyclia:Empowerment", "Glyph of Empowerment", "Prima Cyclia");
         PrimaCyclia.Instance.AddPuzzlePermission("empowerment");
         PrimaCyclia.Instance.AddPartType(Empowerment, "empowerment", EmpowermentGlyph.Render);
         QApi.BindGlyphCycle(Empowerment, new(PartCycleDelegate.PartCycleExecutionType.Normal, EmpowermentGlyph.OnCycle));
