@@ -36,5 +36,11 @@ internal static class Atoms {
             },
         };
         PrimaCyclia.Instance.AddAtomType(Phlogiston, "phlogiston");
-	}
+
+        QApi.AddMoleculeName(Sulfur, PrimaCyclia.Instance.Translate("molecule_prefix.sulfur"));
+
+        QApi.AddMoleculeName(Oxygen, PrimaCyclia.Instance.Translate("molecule_prefix.oxygen"));
+
+        QApi.AddMoleculeName(Phlogiston, PrimaCyclia.Instance.Translate("molecule_prefix.phlogiston"));
+    }
 }

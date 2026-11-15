@@ -51,6 +51,11 @@
       "combustion": "Glyph of Combustion",
       "sublimation": "Glyph of Sublimation",
       "empowerment": "Glyph of Empowerment"
+    },
+    "molecule_prefix": {
+      "sulfur": "Volatile {0}",
+      "oxygen": "Oxidized {0}",
+      "phlogiston": "Phlogisticated {0}"
     }
   }
 }
